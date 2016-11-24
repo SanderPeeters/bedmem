@@ -56,6 +56,15 @@
 
     <div class="container-fluid">
 
+        <div class="row half-height">
+            <div class="col-md-8 col-md-offset-2">
+                <h1>Bednet Memory</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices, odio molestie rhoncus imperdiet, purus felis lacinia justo, quis pharetra elit nisl pellentesque erat. Nunc sit amet magna id mi luctus blandit eu in lacus. Mauris eget augue vitae mi aliquet vehicula. Etiam consectetur nisl quis diam viverra, vitae pharetra eros molestie. Nam pellentesque elementum purus a feugiat. In et leo elit. Nam scelerisque condimentum nisl non varius. Nunc rhoncus, eros a posuere porttitor, enim leo laoreet tortor, non venenatis neque massa nec lorem. Duis nunc massa, posuere ac enim id, varius vulputate orci.
+                </p>
+            </div>
+        </div>
+
         <div class="row tiles">
             <div class="tile col-md-4" data-scale="1.02">
                 <div class="photo" style="background-image: url('img/bed.jpg');"></div>
@@ -84,16 +93,19 @@
 
         </div>
 
-        <div class="row">
-            <p>test</p>
+        <div class="row footer">
+            <div class="col-md-5 col-md-offset-1">
+                <p>Copyright Sander en Edward</p>
+            </div>
+            <div class="col-md-5">
+                <a href="http://www.bednet.be/">Bezoek ook de website van Bednet.</a>
+            </div>
         </div>
-        {{--        <div class="row">
-                    <div class="half-height">
-                        <p>test</p>
-                    </div>
-                </div>--}}
+
     </div>
+
 </div>
+
 <!-- Scripts -->
 <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 <script src="/js/main.js"></script>
