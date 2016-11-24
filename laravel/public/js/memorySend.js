@@ -10,7 +10,7 @@
  * Copyright 2014, Call Me Nick
  * http://callmenick.com
  */
-
+var cards_to_send;
 ;(function( window ) {
 
   'use strict';
@@ -64,11 +64,74 @@
   Memory.prototype.options = {
     wrapperID : "container",
     cards : [
-
+      {
+        id : 1,
+        img: "img/default/monsters-01.png"
+      },
+      {
+        id : 2,
+        img: "img/default/monsters-02.png"
+      },
+      {
+        id : 3,
+        img: "img/default/monsters-03.png"
+      },
+      {
+        id : 4,
+        img: "img/default/monsters-04.png"
+      },
+      {
+        id : 5,
+        img: "img/default/monsters-05.png"
+      },
+      {
+        id : 6,
+        img: "img/default/monsters-06.png"
+      },
+      {
+        id : 7,
+        img: "img/default/monsters-07.png"
+      },
+      {
+        id : 8,
+        img: "img/default/monsters-08.png"
+      },
+      {
+        id : 9,
+        img: "img/default/monsters-09.png"
+      },
+      {
+        id : 10,
+        img: "img/default/monsters-10.png"
+      },
+      {
+        id : 11,
+        img: "img/default/monsters-11.png"
+      },
+      {
+        id : 12,
+        img: "img/default/monsters-12.png"
+      },
+      {
+        id : 13,
+        img: "img/default/monsters-13.png"
+      },
+      {
+        id : 14,
+        img: "img/default/monsters-14.png"
+      },
+      {
+        id : 15,
+        img: "img/default/monsters-15.png"
+      },
+      {
+        id : 16,
+        img: "img/default/monsters-16.png"
+      }
     ],
     onGameStart : function() { return false; },
     onGameEnd : function() { return false; }
-  };
+  }
 
   /**
    * Memory _init - initialise Memory
@@ -125,7 +188,9 @@
     var self = this;
     this.gameState = 1;
     this.cards = shuffle(this.options.cards);
+/*
       console.log(this.cards);
+*/
     this.card1 = "";
     this.card2 = "";
     this.card1id = "";
@@ -150,9 +215,14 @@
     this.gameMeta.innerHTML = this.gameMetaHTML;
     this.game.appendChild(this.gameMeta);
 
-    this.gameStartScreenHTML = '<h2 class="mg__start-screen--heading">Welkom bij het Bednet memory spel!</h2>\
-      <p class="mg__start-screen--text">Draai de kaarten om en probeer paren te vinden. Vind alle paren en je wint! probeer te winnen met zo min mogelijk zetten!</p>\
-      <h3 class="mg__start-screen--sub-heading">Even wachten op de andere kant tot ze hebben gekozen</h3>';
+    this.gameStartScreenHTML = '<h2 class="mg__start-screen--heading">Welcome to the Memory Game!</h2>\
+      <p class="mg__start-screen--text">Flip the tiles and try to match them up in pairs. Pair up all the tiles to win. Try to complete the game in as few moves as possible!</p>\
+      <h3 class="mg__start-screen--sub-heading">Select Level</h3>\
+      <ul class="mg__start-screen--level-select">\
+      <li><span data-level="1">Level 1 - Easy (4 x 2)</span></li>\
+      <li><span data-level="2">Level 2 - Medium (6 x 3)</span></li>\
+      <li><span data-level="3">Level 3 - Hard (8 x 4)</span></li>\
+      </ul>';
     this.gameStartScreen.innerHTML = this.gameStartScreenHTML;
     this.game.appendChild(this.gameStartScreen);
 
@@ -160,8 +230,7 @@
       self.resetGame();
     });
 
-
-    this._setupGameWrapper();
+    this._startScreenEvents();
   }
 
   /**
@@ -202,9 +271,8 @@
    * tiles will reside and where all the game play happens.
    */
 
-  Memory.prototype._setupGameWrapper = function() {
-    // this.level = levelNode.getAttribute("data-level");
-    this.level = this.options.level;
+  Memory.prototype._setupGameWrapper = function(levelNode) {
+    this.level = levelNode.getAttribute("data-level");
     this.gameStartScreen.parentNode.removeChild(this.gameStartScreen);
     this.gameContents.className = "mg__contents mg__level-"+this.level;
     this.game.appendChild(this.gameWrapper);
@@ -238,9 +306,11 @@
     for ( var i = 0; i < this.halfNumTiles; i++ ) {
       this.newCards.push(this.cards[i], this.cards[i]);
     }
-    //this.newCards = shuffle(this.newCards);
-    this.newCards = this.options.shuffledCards;
-    console.log(JSON.stringify(this.newCards));
+    this.newCards = shuffle(this.newCards);
+    cards_to_send = this.newCards;
+/*
+    console.log(this.newCards);
+*/
     this.tilesHTML = '';
     for ( var i = 0; i < this.numTiles; i++  ) {
       var n = i + 1;

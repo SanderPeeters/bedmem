@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/play1', function () {
+    return view('memory.memorysend');
+});
+Route::get('/play2', function () {
+    return view('memory.memoryreceive');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
