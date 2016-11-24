@@ -39,7 +39,8 @@
     <script src="js/classList.js"></script>
     <script src="js/memorysend.js"></script>
     <script>
-        var channel = "test_channel";
+        var channelToSend = "test_channel";
+        var isYourTurn = true;
             (function(){
                 var myMem = new Memory({
                     wrapperID : "my-memory-game",
@@ -48,6 +49,14 @@
                     onGameEnd : function() { return false; }
                 });
             })();
+    if(!isYourTurn){
+        channel.bind('card_clicked', function(data) {
+            console.log("#mg__tile_to_click-" + data.card_id);
+            $("#mg__tile_to_click-" + data.card_id).click();
+
+        });
+    }
+
     </script>
     <script>
         console.log("token= " + $('meta[name="csrf-token"]').attr('content'));
@@ -64,28 +73,29 @@
             $.ajax({
                 method: 'POST',
                 url: '/pusher/startgame',
-                data: {channel: channel, level: level, shuffled_cards: shuffled_cards},
+                data: {channel: channelToSend, level: level, shuffled_cards: shuffled_cards},
                 dataType: 'json',
                 success: function( msg ) {
-                    $("#ajaxResponse").append("<div>"+msg.response+"</div>");
+                    $("#ajaxResponse").empty().append("<div>"+msg.response+"</div>");
                 }
             })
         }
-        function cardClicked(card_id) {
 
+        function cardClicked(card_id) {
+            if(isYourTurn){
             $(function() {
 
             });
             $.ajax({
                 method: 'POST',
                 url: '/pusher/cardclick',
-                data: {channel: channel, card_id: card_id},
+                data: {channel: channelToSend, card_id: card_id},
                 dataType: 'json',
                 success: function( msg ) {
-                    $("#ajaxResponse").append("<div>"+msg.response+"</div>");
+                    $("#ajaxResponse").empty().append("<div>"+msg.response+"</div>");
                 }
             })
-        }
+        }}
     </script>
 @endsection
 

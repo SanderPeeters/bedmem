@@ -39,6 +39,9 @@
     <script>
         var shuffled_cards_received;
         var level_received;
+        var isYourTurn = false;
+        var channelToSend = "test_channel";
+
         channel.bind('start_game', function(data) {
             shuffled_cards_received = data.shuffled_cards;
             level_received = data.level;
@@ -54,12 +57,39 @@
             })();
 
         });
-        channel.bind('card_clicked', function(data) {
-            console.log("#mg__tile_to_click-" + data.card_id);
+        if(!isYourTurn){
+            channel.bind('card_clicked', function(data) {
+                console.log("#mg__tile_to_click-" + data.card_id);
                 $("#mg__tile_to_click-" + data.card_id).click();
 
+            });
+        }
+
+    </script>
+    <script>
+        console.log("token= " + $('meta[name="csrf-token"]').attr('content'));
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            }
         });
 
+
+            function cardClicked(card_id) {
+                if(isYourTurn){
+                $(function() {
+
+                });
+                $.ajax({
+                    method: 'POST',
+                    url: '/pusher/cardclick',
+                    data: {channel: channelToSend, card_id: card_id},
+                    dataType: 'json',
+                    success: function( msg ) {
+                        $("#ajaxResponse").empty().append("<div>"+msg.response+"</div>");
+                    }
+                })
+            }}
     </script>
 @endsection
 
