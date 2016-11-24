@@ -10,17 +10,28 @@ use Vinkla\Pusher\Facades\Pusher;
 | to using a Closure or controller method. Build something great!
 |
 */
+Route::group(['middleware' => "web"], function() {
+    Route::get('/', function () {
+        return view('welcome');
+    });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    Route::get('/play1', function () {
+        return view('memory.memorysend');
+    });
+    Route::get('/play2', function () {
+        return view('memory.memoryreceive');
+    });
 
-Auth::routes();
+    Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+    Route::get('/home', 'HomeController@index');
 
-Route::get('/bridge', function() {
-    Pusher::trigger('test_channel', 'my_event', ['message' => 'hey']);
+    Route::get('/bridge', function () {
+        Pusher::trigger('test_channel', 'my_event', ['message' => 'hey']);
 
-    return view('welcome');
+        return view('welcome');
+    });
+    Route::post('pusher/startgame', 'PusherController@startGame');
+    Route::post('pusher/cardclick', 'PusherController@cardClicked');
+
 });
