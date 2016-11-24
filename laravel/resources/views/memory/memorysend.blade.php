@@ -13,7 +13,9 @@
 
                 <div class="panel-body">
                     Even wachten tot het spel send is.
+                    <div id="ajaxResponse"></div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -47,6 +49,26 @@
                     onGameEnd : function() { return false; }
                 });
             })();
+    </script>
+    <script>
+        function startGame(channel, level, shuffled_cards) {
+            $(function() {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+            });
+            $.ajax({
+                method: 'POST',
+                url: '/startgame',
+                data: {channel: channel, level: level, shuffled_cards: shuffled_cards},
+                dataType: 'json',
+                success: function( msg ) {
+                    $("#ajaxResponse").append("<div>"+msg.response+"</div>");
+                }
+            })
+        }
     </script>
 @endsection
 
