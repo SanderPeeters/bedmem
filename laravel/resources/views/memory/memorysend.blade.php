@@ -39,13 +39,12 @@
     <script src="js/classList.js"></script>
     <script src="js/memorysend.js"></script>
     <script>
-
-
+        var channel = "test_channel";
             (function(){
                 var myMem = new Memory({
                     wrapperID : "my-memory-game",
                     cards : this.all_cards,
-                    onGameStart : function() { startGame('test_channel', level_to_send, cards_to_send) },
+                    onGameStart : function() { startGame(level_to_send, cards_to_send) },
                     onGameEnd : function() { return false; }
                 });
             })();
@@ -57,15 +56,30 @@
                 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        function startGame(channel, level, shuffled_cards) {
+        function startGame(level, shuffled_cards) {
 
             $(function() {
 
             });
             $.ajax({
                 method: 'POST',
-                url: '/startgame',
+                url: '/pusher/startgame',
                 data: {channel: channel, level: level, shuffled_cards: shuffled_cards},
+                dataType: 'json',
+                success: function( msg ) {
+                    $("#ajaxResponse").append("<div>"+msg.response+"</div>");
+                }
+            })
+        }
+        function cardClicked(card_id) {
+
+            $(function() {
+
+            });
+            $.ajax({
+                method: 'POST',
+                url: '/pusher/cardclick',
+                data: {channel: channel, card_id: card_id},
                 dataType: 'json',
                 success: function( msg ) {
                     $("#ajaxResponse").append("<div>"+msg.response+"</div>");

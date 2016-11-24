@@ -316,7 +316,7 @@ var level_to_send;
     this.tilesHTML = '';
     for ( var i = 0; i < this.numTiles; i++  ) {
       var n = i + 1;
-      this.tilesHTML += '<div class="mg__tile mg__tile-' + n + '">\
+      this.tilesHTML += '<div class="mg__tile mg__tile-' + n + '" onclick="cardClicked(' + n + ')">\
         <div class="mg__tile--inner" data-id="' + this.newCards[i]["id"] + '">\
         <span class="mg__tile--outside"></span>\
         <span class="mg__tile--inside"><img src="' + this.newCards[i]["img"] + '"></span>\

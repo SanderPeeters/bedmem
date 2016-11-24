@@ -31,5 +31,7 @@ Route::group(['middleware' => "web"], function() {
 
         return view('welcome');
     });
-    Route::post('/startgame', 'PusherController@startGame');
+    Route::post('pusher/startgame', 'PusherController@startGame');
+    Route::post('pusher/cardclick', 'PusherController@cardClicked');
+
 });
