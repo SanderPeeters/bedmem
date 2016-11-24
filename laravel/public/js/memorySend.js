@@ -11,6 +11,7 @@
  * http://callmenick.com
  */
 var cards_to_send;
+var level_to_send;
 ;(function( window ) {
 
   'use strict';
@@ -308,6 +309,7 @@ var cards_to_send;
     }
     this.newCards = shuffle(this.newCards);
     cards_to_send = this.newCards;
+    level_to_send = this.level;
 /*
     console.log(this.newCards);
 */

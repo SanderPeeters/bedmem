@@ -39,7 +39,7 @@
     <script>
         var shuffled_cards_received;
         var level_received;
-        channel.bind('choose_level', function(data) {
+        channel.bind('start_game', function(data) {
             shuffled_cards_received = data.shuffled_cards;
             level_received = data.level;
             (function(){

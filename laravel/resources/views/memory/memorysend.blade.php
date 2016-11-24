@@ -45,19 +45,22 @@
                 var myMem = new Memory({
                     wrapperID : "my-memory-game",
                     cards : this.all_cards,
-                    onGameStart : function() { console.log(cards_to_send); },
+                    onGameStart : function() { startGame('test_channel', level_to_send, cards_to_send) },
                     onGameEnd : function() { return false; }
                 });
             })();
     </script>
     <script>
+        console.log("token= " + $('meta[name="csrf-token"]').attr('content'));
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         function startGame(channel, level, shuffled_cards) {
+
             $(function() {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
+
             });
             $.ajax({
                 method: 'POST',
