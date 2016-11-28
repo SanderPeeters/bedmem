@@ -8,22 +8,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    Even wachten tot het spel ontvangen is.
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+            <div id="ajaxResponse"></div>
+            <div id="wait-message">Even wachten tot het spel gestart is door de andere kant.</div>
             <div class="content">
                 <div class="container">
-
                     <div id="my-memory-game"></div>
-
                 </div>
             </div>
         </div>
@@ -46,6 +35,8 @@
         channel.bind('start_game', function(data) {
             shuffled_cards_received = data.shuffled_cards;
             level_received = data.level;
+            $("#wait-message").empty();
+            $("#ajaxResponse").empty().append("<div>Game Received!</div>");
             (function(){
                 var myMem = new Memory({
                     wrapperID : "my-memory-game",
@@ -62,6 +53,7 @@
             channel.bind('card_clicked', function(data) {
                 console.log("#mg__tile_to_click-" + data.card_id);
                 $("#mg__tile_to_click-" + data.card_id).click();
+                $("#ajaxResponse").empty().append("<div>card "+data.card_id+" clicked!</div>");
 
             });
         }
@@ -76,12 +68,19 @@
             }
         });
 
+        //send message to tell other side that you logged in
+        $(function() { $.ajax({
+            method: 'POST',
+            url: '/pusher/joined',
+            data: {channel: channelToSend},
+            dataType: 'json',
+            success: function( msg ) {
+                $("#ajaxResponse").empty().append("<div>"+msg.response+"</div>");
+            }
+        }) });
 
-            function cardClicked(card_id) {
+        function cardClicked(card_id) {
                 if(isYourTurn){
-                $(function() {
-
-                });
                 $.ajax({
                     method: 'POST',
                     url: '/pusher/cardclick',
