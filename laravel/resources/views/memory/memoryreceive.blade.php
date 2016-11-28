@@ -36,6 +36,7 @@
     <script src="js/pusherLogin.js"></script>
     <script src="js/classList.js"></script>
     <script src="js/memoryReceiver.js"></script>
+
     <script>
         var shuffled_cards_received;
         var level_received;
@@ -66,6 +67,7 @@
         }
 
     </script>
+    <script src="js/yourTurnLogic.js"></script>
     <script>
         console.log("token= " + $('meta[name="csrf-token"]').attr('content'));
         $.ajaxSetup({

@@ -56,8 +56,8 @@
 
         });
     }
-
     </script>
+    <script src="js/yourTurnLogic.js"></script>
     <script>
         console.log("token= " + $('meta[name="csrf-token"]').attr('content'));
         $.ajaxSetup({
