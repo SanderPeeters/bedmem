@@ -3,7 +3,10 @@
 @section('content')
     <div class="container home">
         <div class="row homeimage">
-            <img src="/img/poesje.png" alt="Image that represents the school playground." id="playground">
+            <div class="col-md-12">
+                <img src="/img/poesje.png" alt="Image that represents the school playground." id="playground">
+            </div>
+
         </div>
         <div class="row hometitle">
             <h2>Speel het bekende memory spel!</h2>

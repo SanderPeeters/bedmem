@@ -27,16 +27,8 @@ img#playground {
 .explanation {
     margin-bottom: 20px;
 }
-@media screen and (min-width: 992px) {
-    .explanation:first-child {
-        padding-left: 0px;
-    }
-    .explanation:last-child {
-        padding-right: 0px;
-    }
-}
-
 #bednetlogo {
+    margin-left: 15px;
     padding-top: 10px;
     height: 100%;
 }
@@ -69,7 +61,9 @@ img#playground {
     color: #fff;
     background-color: rgb(242, 120, 21);
 }
-
+.navbar-right {
+    margin-right: 0px;
+}
 .footer {
     /* Set the fixed height of the footer here */
     min-height: 60px;

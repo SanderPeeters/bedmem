@@ -17,12 +17,12 @@
                     </button>
                 </a>
             </div>
-            <div class="col-sm-6 nopadding">
+            <div class="col-sm-6 ">
                 <img src="/img/boot.png" alt="A cat lying in a boat." id="playground">
             </div>
         </div>
         <div class="row last">
-            <div class="col-sm-6 nopadding">
+            <div class="col-sm-6">
                 <img src="/img/boot.png" alt="A cat lying in a boat." id="playground">
             </div>
             <div class="col-sm-6 explanation">
