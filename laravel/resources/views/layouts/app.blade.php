@@ -38,7 +38,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        <img src="img/bednetlogo.png" alt="Logo van Bednet" id="bednetlogo">
                     </a>
                 </div>
 
@@ -51,8 +51,11 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{url('/')}}">Home</a></li>
+                        <li class="{{ Request::is('/play2') ? 'active' : '' }}"><a href="{{url('/play2')}}">Speel</a></li>
+                        <li class="{{ Request::is('') ? 'active' : '' }}"><a href="{{url('/')}}">Over</a></li>
+                        <li><a href="http://www.bednet.be/">Bednet</a></li>
                         <!-- Authentication Links -->
-                        @if (Auth::guest())
+                        {{--@if (Auth::guest())
                             <li class="{{ Request::is('login') ? 'active' : '' }}"><a href="{{ url('/login') }}">Login</a></li>
                             <li class="{{ Request::is('register') ? 'active' : '' }}"><a href="{{ url('/register') }}">Registreer</a></li>
                         @else
@@ -75,20 +78,21 @@
                                     </li>
                                 </ul>
                             </li>
-                        @endif
+                        @endif--}}
                     </ul>
                 </div>
             </div>
         </nav>
 
         @yield('content')
-
-        <div class="row footer">
-            <div class="col-md-5 col-md-offset-1">
-                <p>Copyright Sander en Edward</p>
-            </div>
-            <div class="col-md-5">
-                <a href="http://www.bednet.be/">Bezoek ook de website van Bednet.</a>
+        <div class="container-fluid">
+            <div class="row footer">
+                <div class="col-md-5 col-md-offset-1">
+                    <p>Copyright Sander en Edward</p>
+                </div>
+                <div class="col-md-5">
+                    <a href="http://www.bednet.be/">Bezoek ook de website van Bednet.</a>
+                </div>
             </div>
         </div>
 

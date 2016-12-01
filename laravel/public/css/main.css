@@ -5,13 +5,46 @@ body {
     font-family: 'Dosis', sans-serif;
 }
 .home {
-    min-height: 82vh;
+    min-height: 100vh;
+}
+.homeimage {
+    height: 50vh;
+}
+.hometitle h3, h2 {
+    text-align: center;
+}
+img#playground {
+    height: 50vh;
+}
+#playground {
+    object-fit: cover;
+    width: 100%;
+}
+.image-on-home {
+    width: 100%;
+}
+.explanation:first-child {
+    padding-left: 0px;
+}
+.explanation:last-child {
+    padding-right: 0px;
+}
+#bednetlogo {
+    padding-top: 10px;
+    height: 100%;
+}
+.row.last {
+    margin-bottom: 20px;
 }
 .navbar-default {
     background-color: transparent;
     border: none;
 }
-
+.navbar-brand {
+    background-color: #fff !important;
+    padding: 0px;
+    width: 200px;
+}
 .navbar-default .navbar-nav>li>a, .navbar-default .navbar-text, .navbar-default .navbar-brand {
     background-color: rgb(111,185,230);
     color: #fff;
