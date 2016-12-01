@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis:400,700');
+
+body {
+    background-color: #fff;
+    font-family: 'Dosis', sans-serif;
+}
+.home {
+    min-height: 100vh;
+}
+.homeimage {
+    height: 50vh;
+}
+.hometitle h3, .hometitle h2 {
+    text-align: center;
+}
+img#playground {
+    height: 50vh;
+}
+#playground {
+    object-fit: cover;
+    width: 100%;
+}
+.image-on-home {
+    width: 100%;
+}
+@media screen and (min-width: 992px) {
+    .explanation:first-child {
+        padding-left: 0px;
+    }
+    .explanation:last-child {
+        padding-right: 0px;
+    }
+}
+
+#bednetlogo {
+    padding-top: 10px;
+    height: 100%;
+}
+.row.last {
+    margin-bottom: 20px;
+}
+.navbar-default {
+    background-color: transparent;
+    border: none;
+}
+.navbar-brand {
+    background-color: #fff !important;
+    padding: 0px;
+    width: 200px;
+}
+.navbar-default .navbar-nav>li>a, .navbar-default .navbar-text, .navbar-default .navbar-brand {
+    background-color: rgb(111,185,230);
+    color: #fff;
+    margin-right: 1px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: #fff;
+    background-color: rgb(182,220, 242);
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
+    color: #fff;
+    background-color: rgb(242, 120, 21);
+}
+
+.footer {
+    /* Set the fixed height of the footer here */
+    min-height: 60px;
+    padding-top: 20px;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+.nopadding {
+    padding: 0px !important;
+}
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+.buttonstyle {
+    border: none;
+    font-family: 'Dosis', sans-serif;
+    padding: 5px 35px;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: rgb(242, 120, 21);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.buttonstyle:hover {
+    color: rgb(242, 120, 21);
+    background-color: #fff;
+    border: 1px solid rgb(242, 120, 21);
+}

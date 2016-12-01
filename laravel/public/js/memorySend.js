@@ -10,7 +10,8 @@
  * Copyright 2014, Call Me Nick
  * http://callmenick.com
  */
-
+var cards_to_send;
+var level_to_send;
 ;(function( window ) {
 
   'use strict';
@@ -68,7 +69,7 @@
     ],
     onGameStart : function() { return false; },
     onGameEnd : function() { return false; }
-  };
+  }
 
   /**
    * Memory _init - initialise Memory
@@ -125,7 +126,9 @@
     var self = this;
     this.gameState = 1;
     this.cards = shuffle(this.options.cards);
+/*
       console.log(this.cards);
+*/
     this.card1 = "";
     this.card2 = "";
     this.card1id = "";
@@ -145,23 +148,27 @@
       </span>\
       </div>\
       <div class="mg__meta--right">\
-      <!--<button id="mg__button&#45;&#45;restart" class="mg__button">Start Over</button>-->\
+      <button id="mg__button--restart" class="mg__button">Begin opnieuw</button>\
       </div>';
     this.gameMeta.innerHTML = this.gameMetaHTML;
     this.game.appendChild(this.gameMeta);
 
-    this.gameStartScreenHTML = '<h2 class="mg__start-screen--heading">Welkom bij het Bednet memory spel!</h2>\
-      <p class="mg__start-screen--text">Draai de kaarten om en probeer paren te vinden. Vind alle paren en je wint! probeer te winnen met zo min mogelijk zetten!</p>\
-      <h3 class="mg__start-screen--sub-heading">Even wachten op de andere kant tot ze hebben gekozen</h3>';
+    this.gameStartScreenHTML = '<h2 class="mg__start-screen--heading">'+mem_intro_text+'</h2>\
+      <p class="mg__start-screen--text">'+mem_explanation_text+'</p>\
+      <h3 class="mg__start-screen--sub-heading">Kies Niveau</h3>\
+      <ul class="mg__start-screen--level-select">\
+      <li><span data-level="1">Niveau 1 - Makkelijk (4 x 2)</span></li>\
+      <li><span data-level="2">Niveau 2 - Gemiddeld (6 x 3)</span></li>\
+      <li><span data-level="3">Niveau 3 - Moeilijk (8 x 4)</span></li>\
+      </ul>';
     this.gameStartScreen.innerHTML = this.gameStartScreenHTML;
     this.game.appendChild(this.gameStartScreen);
 
-    /*document.getElementById("mg__button--restart").addEventListener( "click", function(e) {
+    document.getElementById("mg__button--restart").addEventListener( "click", function(e) {
       self.resetGame();
-    });*/
+    });
 
-
-    this._setupGameWrapper();
+    this._startScreenEvents();
   }
 
   /**
@@ -202,9 +209,8 @@
    * tiles will reside and where all the game play happens.
    */
 
-  Memory.prototype._setupGameWrapper = function() {
-    // this.level = levelNode.getAttribute("data-level");
-    this.level = this.options.level;
+  Memory.prototype._setupGameWrapper = function(levelNode) {
+    this.level = levelNode.getAttribute("data-level");
     this.gameStartScreen.parentNode.removeChild(this.gameStartScreen);
     this.gameContents.className = "mg__contents mg__level-"+this.level;
     this.game.appendChild(this.gameWrapper);
@@ -238,9 +244,12 @@
     for ( var i = 0; i < this.halfNumTiles; i++ ) {
       this.newCards.push(this.cards[i], this.cards[i]);
     }
-    //this.newCards = shuffle(this.newCards);
-    this.newCards = this.options.shuffledCards;
-    console.log(JSON.stringify(this.newCards));
+    this.newCards = shuffle(this.newCards);
+    cards_to_send = this.newCards;
+    level_to_send = this.level;
+/*
+    console.log(this.newCards);
+*/
     this.tilesHTML = '';
     for ( var i = 0; i < this.numTiles; i++  ) {
       var n = i + 1;
@@ -362,8 +371,8 @@
       self.card1.classList.remove("flipped");
       self.card2.classList.remove("flipped");
       self._gameResetVars();
-      isYourTurn = !isYourTurn;
-      changePointerEventForTurn();
+        isYourTurn = !isYourTurn;
+        changePointerEventForTurn();
     }, 900 );
 
     // plus one on the move counter
@@ -427,12 +436,15 @@
     var self = this;
     if (this.options.onGameEnd() === false) {
       this._clearGame();
-        this.gameMessages.innerHTML = '<h2 class="mg__onend--heading">'+mem_end_title+'</h2>\
-        <p class="mg__onend--message">' + mem_end_text_1 + this.numMoves + mem_end_text_2+'</p>';
+      this.gameMessages.innerHTML = '<h2 class="mg__onend--heading">'+mem_end_title+'</h2>\
+        <p class="mg__onend--message">' + mem_end_text_1 + this.numMoves + mem_end_text_2+'</p>\
+        <button id="mg__onend--restart" class="mg__button">'+mem_end_again+'</button>';
       this.game.appendChild(this.gameMessages);
-        isYourTurn = false;
-        changePointerEventForTurn();
-
+      document.getElementById("mg__onend--restart").addEventListener( "click", function(e) {
+        self.resetGame();
+          isYourTurn = true;
+          changePointerEventForTurn();
+      });
     } else {
       // run callback
       this.options.onGameEnd();
