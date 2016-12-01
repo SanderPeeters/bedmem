@@ -9,8 +9,10 @@
 
         </div>
         <div class="row hometitle">
-            <h2>Speel het bekende memory spel!</h2>
-            <h3>Zin om even te spelen met je vriendjes?</h3>
+            <div class="col-md-12">
+                <h2>Speel het bekende memory spel!</h2>
+                <h3>Zin om even te spelen met je vriendjes?</h3>
+            </div>
         </div>
         <div class="row last">
             <div class="col-md-6 explanation">
