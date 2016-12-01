@@ -6,28 +6,17 @@
 
 @section('content')
 <div class="container">
+
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    Even wachten tot het spel send is.
-                    <div id="ajaxResponse"></div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+            <div id="wait-message">Even wachten de andere kant is ingelogd.</div>
+            <div id="ajaxResponse"></div>
             <div class="content">
                 <div class="container">
-
                     <div id="my-memory-game"></div>
-
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -41,6 +30,10 @@
     <script>
         var channelToSend = "test_channel";
         var isYourTurn = true;
+
+        channel.bind('has_joined', function(data) {
+            $("#wait-message").empty();
+            $("#ajaxResponse").empty().append("<div>Channel "+data.channel+" has two players</div>");
             (function(){
                 var myMem = new Memory({
                     wrapperID : "my-memory-game",
@@ -49,15 +42,16 @@
                     onGameEnd : function() { return false; }
                 });
             })();
-    if(!isYourTurn){
-        channel.bind('card_clicked', function(data) {
-            console.log("#mg__tile_to_click-" + data.card_id);
-            $("#mg__tile_to_click-" + data.card_id).click();
-
         });
-    }
 
+        channel.bind('card_clicked', function(data) {
+            if(!isYourTurn) {
+                console.log("#mg__tile_to_click-" + data.card_id);
+                $("#mg__tile_to_click-" + data.card_id).click();
+            }
+        });
     </script>
+    <script src="js/yourTurnLogic.js"></script>
     <script>
         console.log("token= " + $('meta[name="csrf-token"]').attr('content'));
         $.ajaxSetup({
@@ -66,10 +60,6 @@
             }
         });
         function startGame(level, shuffled_cards) {
-
-            $(function() {
-
-            });
             $.ajax({
                 method: 'POST',
                 url: '/pusher/startgame',
@@ -83,9 +73,7 @@
 
         function cardClicked(card_id) {
             if(isYourTurn){
-            $(function() {
 
-            });
             $.ajax({
                 method: 'POST',
                 url: '/pusher/cardclick',

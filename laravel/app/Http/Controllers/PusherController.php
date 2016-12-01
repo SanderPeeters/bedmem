@@ -16,11 +16,18 @@ class PusherController extends Controller
         return response()->json(['response' => 'Game send!']);
     }
 
-    //the creator (teacher) of the game triggers this event and sends the 'bednetter' the correct cards and level.
+    //Tell the correct channel which card has been clicked.
     function cardClicked(Request $request){
         $channel = $request->input('channel');
         $card_id = $request->input('card_id');
         Pusher::trigger($channel, 'card_clicked', ['card_id' => $card_id]);
         return response()->json(['response' => 'card '.$card_id.' clicked!']);
+    }
+
+    //Tell the correct channel that the bednetter has joined the channel.
+    function joinedChannel(Request $request){
+        $channel = $request->input('channel');
+        Pusher::trigger($channel, 'has_joined', ['channel' => $channel]);
+        return response()->json(['response' => 'channel '.$channel.' joined!']);
     }
 }
