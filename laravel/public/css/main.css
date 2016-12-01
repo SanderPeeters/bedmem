@@ -4,6 +4,9 @@ body {
     background-color: #fff;
     font-family: 'Dosis', sans-serif;
 }
+.wrapper {
+    min-height: 79vh;
+}
 .home {
     min-height: 100vh;
 }
