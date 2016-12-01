@@ -18,10 +18,14 @@ img#playground {
 }
 #playground {
     object-fit: cover;
+    object-position: 10% 0;
     width: 100%;
 }
 .image-on-home {
     width: 100%;
+}
+.explanation {
+    margin-bottom: 20px;
 }
 @media screen and (min-width: 992px) {
     .explanation:first-child {
@@ -84,7 +88,7 @@ a:visited {
     text-decoration: none;
 }
 .buttonstyle {
-    border: none;
+    border: 1px solid rgb(242, 120, 21);
     font-family: 'Dosis', sans-serif;
     padding: 5px 35px;
     text-transform: uppercase;
