@@ -43,6 +43,7 @@
                     onGameStart : function() { startGame(level_to_send, cards_to_send) },
                     onGameEnd : function() { return false; }
                 });
+            changePointerEventForTurn();
         });
 
         channel.bind('card_clicked', function(data) {
