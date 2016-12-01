@@ -83,3 +83,18 @@ a:link {
 a:visited {
     text-decoration: none;
 }
+.buttonstyle {
+    border: none;
+    font-family: 'Dosis', sans-serif;
+    padding: 5px 35px;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: rgb(242, 120, 21);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.buttonstyle:hover {
+    color: rgb(242, 120, 21);
+    background-color: #fff;
+    border: 1px solid rgb(242, 120, 21);
+}
