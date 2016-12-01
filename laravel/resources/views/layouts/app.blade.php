@@ -51,7 +51,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{url('/')}}">Home</a></li>
-                        <li class="{{ Request::is('/play2') ? 'active' : '' }}"><a href="{{url('/play2')}}">Speel</a></li>
+                        <li class="{{ Request::is('games') ? 'active' : '' }}"><a href="{{url('/games')}}">Speel</a></li>
                         <li class="{{ Request::is('') ? 'active' : '' }}"><a href="{{url('/')}}">Over</a></li>
                         <li><a href="http://www.bednet.be/">Bednet</a></li>
                         <!-- Authentication Links -->

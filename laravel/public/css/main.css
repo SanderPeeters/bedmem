@@ -10,7 +10,7 @@ body {
 .homeimage {
     height: 50vh;
 }
-.hometitle h3, h2 {
+.hometitle h3, .hometitle h2 {
     text-align: center;
 }
 img#playground {
@@ -23,12 +23,15 @@ img#playground {
 .image-on-home {
     width: 100%;
 }
-.explanation:first-child {
-    padding-left: 0px;
+@media screen and (min-width: 992px) {
+    .explanation:first-child {
+        padding-left: 0px;
+    }
+    .explanation:last-child {
+        padding-right: 0px;
+    }
 }
-.explanation:last-child {
-    padding-right: 0px;
-}
+
 #bednetlogo {
     padding-top: 10px;
     height: 100%;
@@ -69,4 +72,14 @@ img#playground {
     padding-top: 20px;
     background-color: #f5f5f5;
     text-align: center;
+}
+.nopadding {
+    padding: 0px !important;
+}
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
 }
