@@ -65,70 +65,7 @@ var level_to_send;
   Memory.prototype.options = {
     wrapperID : "container",
     cards : [
-      {
-        id : 1,
-        img: "img/default/monsters-01.png"
-      },
-      {
-        id : 2,
-        img: "img/default/monsters-02.png"
-      },
-      {
-        id : 3,
-        img: "img/default/monsters-03.png"
-      },
-      {
-        id : 4,
-        img: "img/default/monsters-04.png"
-      },
-      {
-        id : 5,
-        img: "img/default/monsters-05.png"
-      },
-      {
-        id : 6,
-        img: "img/default/monsters-06.png"
-      },
-      {
-        id : 7,
-        img: "img/default/monsters-07.png"
-      },
-      {
-        id : 8,
-        img: "img/default/monsters-08.png"
-      },
-      {
-        id : 9,
-        img: "img/default/monsters-09.png"
-      },
-      {
-        id : 10,
-        img: "img/default/monsters-10.png"
-      },
-      {
-        id : 11,
-        img: "img/default/monsters-11.png"
-      },
-      {
-        id : 12,
-        img: "img/default/monsters-12.png"
-      },
-      {
-        id : 13,
-        img: "img/default/monsters-13.png"
-      },
-      {
-        id : 14,
-        img: "img/default/monsters-14.png"
-      },
-      {
-        id : 15,
-        img: "img/default/monsters-15.png"
-      },
-      {
-        id : 16,
-        img: "img/default/monsters-16.png"
-      }
+
     ],
     onGameStart : function() { return false; },
     onGameEnd : function() { return false; }
@@ -203,26 +140,26 @@ var level_to_send;
     this.numMoves = 0;
 
     this.gameMetaHTML = '<div class="mg__meta--left">\
-      <span class="mg__meta--level">Level: \
+      <span class="mg__meta--level">Niveau: \
       <span id="mg__meta--level">' + this.chosenLevel + '</span>\
       </span>\
-      <span class="mg__meta--moves">Moves: \
+      <span class="mg__meta--moves">Stappen: \
       <span id="mg__meta--moves">' + this.numMoves + '</span>\
       </span>\
       </div>\
       <div class="mg__meta--right">\
-      <button id="mg__button--restart" class="mg__button">Start Over</button>\
+      <button id="mg__button--restart" class="mg__button">Begin opnieuw</button>\
       </div>';
     this.gameMeta.innerHTML = this.gameMetaHTML;
     this.game.appendChild(this.gameMeta);
 
-    this.gameStartScreenHTML = '<h2 class="mg__start-screen--heading">Welcome to the Memory Game!</h2>\
-      <p class="mg__start-screen--text">Flip the tiles and try to match them up in pairs. Pair up all the tiles to win. Try to complete the game in as few moves as possible!</p>\
-      <h3 class="mg__start-screen--sub-heading">Select Level</h3>\
+    this.gameStartScreenHTML = '<h2 class="mg__start-screen--heading">'+mem_intro_text+'</h2>\
+      <p class="mg__start-screen--text">'+mem_explanation_text+'</p>\
+      <h3 class="mg__start-screen--sub-heading">Kies Niveau</h3>\
       <ul class="mg__start-screen--level-select">\
-      <li><span data-level="1">Level 1 - Easy (4 x 2)</span></li>\
-      <li><span data-level="2">Level 2 - Medium (6 x 3)</span></li>\
-      <li><span data-level="3">Level 3 - Hard (8 x 4)</span></li>\
+      <li><span data-level="1">Niveau 1 - Makkelijk (4 x 2)</span></li>\
+      <li><span data-level="2">Niveau 2 - Gemiddeld (6 x 3)</span></li>\
+      <li><span data-level="3">Niveau 3 - Moeilijk (8 x 4)</span></li>\
       </ul>';
     this.gameStartScreen.innerHTML = this.gameStartScreenHTML;
     this.game.appendChild(this.gameStartScreen);
@@ -499,12 +436,14 @@ var level_to_send;
     var self = this;
     if (this.options.onGameEnd() === false) {
       this._clearGame();
-      this.gameMessages.innerHTML = '<h2 class="mg__onend--heading">Sweet!</h2>\
-        <p class="mg__onend--message">You won the round in ' + this.numMoves + ' moves. Go you.</p>\
-        <button id="mg__onend--restart" class="mg__button">Play again?</button>';
+      this.gameMessages.innerHTML = '<h2 class="mg__onend--heading">'+mem_end_title+'</h2>\
+        <p class="mg__onend--message">' + mem_end_text_1 + this.numMoves + mem_end_text_2+'</p>\
+        <button id="mg__onend--restart" class="mg__button">'+mem_end_again+'</button>';
       this.game.appendChild(this.gameMessages);
       document.getElementById("mg__onend--restart").addEventListener( "click", function(e) {
         self.resetGame();
+          isYourTurn = true;
+          changePointerEventForTurn();
       });
     } else {
       // run callback

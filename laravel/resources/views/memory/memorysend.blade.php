@@ -11,6 +11,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div id="wait-message">Even wachten de andere kant is ingelogd.</div>
             <div id="ajaxResponse"></div>
+            <div id="isYourTurnText"></div>
             <div class="content">
                 <div class="container">
                     <div id="my-memory-game"></div>
@@ -24,6 +25,7 @@
 
 @section('pageExclusiveJS')
     <script src="js/constants.js"></script>
+    <script src="js/texts.js"></script>
     <script src="js/pusherLogin.js"></script>
     <script src="js/classList.js"></script>
     <script src="js/memorysend.js"></script>
@@ -32,22 +34,22 @@
         var isYourTurn = true;
 
         channel.bind('has_joined', function(data) {
+            $("#my-memory-game").empty();
             $("#wait-message").empty();
             $("#ajaxResponse").empty().append("<div>Channel "+data.channel+" has two players</div>");
-            (function(){
                 var myMem = new Memory({
                     wrapperID : "my-memory-game",
                     cards : this.all_cards,
                     onGameStart : function() { startGame(level_to_send, cards_to_send) },
                     onGameEnd : function() { return false; }
                 });
-            })();
         });
 
         channel.bind('card_clicked', function(data) {
             if(!isYourTurn) {
                 console.log("#mg__tile_to_click-" + data.card_id);
                 $("#mg__tile_to_click-" + data.card_id).click();
+                $("#ajaxResponse").empty().append("<div>card " + data.card_id + " clicked!</div>");
             }
         });
     </script>
@@ -73,7 +75,6 @@
 
         function cardClicked(card_id) {
             if(isYourTurn){
-
             $.ajax({
                 method: 'POST',
                 url: '/pusher/cardclick',
