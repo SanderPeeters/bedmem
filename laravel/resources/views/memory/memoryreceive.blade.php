@@ -48,6 +48,7 @@
                     onGameStart : function() { return false; },
                     onGameEnd : function() { return false; }
                 });
+            changePointerEventForTurn();
         });
             channel.bind('card_clicked', function(data) {
                 if(!isYourTurn) {
