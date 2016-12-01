@@ -49,14 +49,15 @@
             })();
 
         });
-        if(!isYourTurn){
-            channel.bind('card_clicked', function(data) {
-                console.log("#mg__tile_to_click-" + data.card_id);
-                $("#mg__tile_to_click-" + data.card_id).click();
-                $("#ajaxResponse").empty().append("<div>card "+data.card_id+" clicked!</div>");
 
+            channel.bind('card_clicked', function(data) {
+                if(!isYourTurn) {
+                    console.log("#mg__tile_to_click-" + data.card_id);
+                    $("#mg__tile_to_click-" + data.card_id).click();
+                    $("#ajaxResponse").empty().append("<div>card " + data.card_id + " clicked!</div>");
+                }
             });
-        }
+
 
     </script>
     <script src="js/yourTurnLogic.js"></script>

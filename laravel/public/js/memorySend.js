@@ -434,6 +434,8 @@ var level_to_send;
       self.card1.classList.remove("flipped");
       self.card2.classList.remove("flipped");
       self._gameResetVars();
+        isYourTurn = !isYourTurn;
+        changePointerEventForTurn();
     }, 900 );
 
     // plus one on the move counter

@@ -44,13 +44,12 @@
             })();
         });
 
-    if(!isYourTurn){
         channel.bind('card_clicked', function(data) {
-            console.log("#mg__tile_to_click-" + data.card_id);
-            $("#mg__tile_to_click-" + data.card_id).click();
-
+            if(!isYourTurn) {
+                console.log("#mg__tile_to_click-" + data.card_id);
+                $("#mg__tile_to_click-" + data.card_id).click();
+            }
         });
-    }
     </script>
     <script src="js/yourTurnLogic.js"></script>
     <script>
