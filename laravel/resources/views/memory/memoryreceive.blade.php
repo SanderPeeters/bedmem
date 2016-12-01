@@ -9,6 +9,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div id="ajaxResponse"></div>
+            <div id="isYourTurnText"></div>
             <div id="wait-message">Even wachten tot het spel gestart is door de andere kant.</div>
             <div class="content">
                 <div class="container">
@@ -22,6 +23,7 @@
 
 @section('pageExclusiveJS')
     <script src="js/constants.js"></script>
+    <script src="js/texts.js"></script>
     <script src="js/pusherLogin.js"></script>
     <script src="js/classList.js"></script>
     <script src="js/memoryReceiver.js"></script>
@@ -35,9 +37,9 @@
         channel.bind('start_game', function(data) {
             shuffled_cards_received = data.shuffled_cards;
             level_received = data.level;
+            $("#my-memory-game").empty();
             $("#wait-message").empty();
             $("#ajaxResponse").empty().append("<div>Game Received!</div>");
-            (function(){
                 var myMem = new Memory({
                     wrapperID : "my-memory-game",
                     cards : this.all_cards,
@@ -46,10 +48,7 @@
                     onGameStart : function() { return false; },
                     onGameEnd : function() { return false; }
                 });
-            })();
-
         });
-
             channel.bind('card_clicked', function(data) {
                 if(!isYourTurn) {
                     console.log("#mg__tile_to_click-" + data.card_id);

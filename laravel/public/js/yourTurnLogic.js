@@ -3,10 +3,12 @@
  */
 function changePointerEventForTurn() {
     if(!isYourTurn){
-        $('#my-memory-game').css({"pointer-events":"none"});
+        $('#mg__wrapper').css({"pointer-events":"none"});
+        $('#isYourTurnText').empty().append("Het is niet jouw beurt");
     }
     if(isYourTurn){
-        $('#my-memory-game').css({"pointer-events":"auto"});
+        $('#mg__wrapper').css({"pointer-events":"auto"});
+        $('#isYourTurnText').empty().append("Het is jouw beurt");
     }
 }
 changePointerEventForTurn();
