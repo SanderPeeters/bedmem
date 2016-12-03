@@ -9,6 +9,7 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+  border-radius: 5px;
 }
 /* =============================================================================
   MEMORY GAME (mg)
@@ -401,6 +402,7 @@ img {
 .mg__tile--inside {
   display: block;
   position: absolute;
+  border-radius: 5px;
   top: 0;
   left: 0;
   width: 100%;
@@ -412,8 +414,15 @@ img {
 }
 
 .mg__tile--outside {
-  background: url("../img/default/logo-bw.png") 50% 50% no-repeat;
+  /*
+  background: url("../img/memory-cards/logo-bw.png") 50% 50% no-repeat;
+  */
   background-color: #dcdee1;
+  background: url("../img/memory-cards/logo-bw.png") no-repeat center center;
+  /*-webkit-background-size: 25%;
+  -moz-background-size: 25%;
+  -o-background-size: 25%;*/
+  background-size: 50%;
   box-shadow: 0 0 0 1px #787a80;
 }
 
