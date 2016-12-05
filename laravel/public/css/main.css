@@ -5,7 +5,7 @@ body {
     font-family: 'Dosis', sans-serif;
 }
 .wrapper {
-    min-height: 79vh;
+    min-height: 82vh;
 }
 .home {
     min-height: 100vh;
@@ -26,6 +26,11 @@ img#playground {
 }
 .image-on-home {
     width: 100%;
+}
+@media screen and (max-width: 768px) {
+    .vanish {
+        display: none;
+    }
 }
 .explanation {
     margin-bottom: 20px;

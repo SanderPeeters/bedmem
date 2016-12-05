@@ -18,12 +18,12 @@
                 </a>
             </div>
             <div class="col-sm-6 ">
-                <img src="/img/boot.png" alt="A cat lying in a boat." id="playground">
+                <img src="/img/attempt2.png" alt="A cat lying in a boat." class="image-on-home vanish">
             </div>
         </div>
         <div class="row last">
             <div class="col-sm-6">
-                <img src="/img/boot.png" alt="A cat lying in a boat." id="playground">
+                <img src="/img/attempt3.jpg" alt="A cat lying in a boat." class="image-on-home vanish">
             </div>
             <div class="col-sm-6 explanation">
                 <h2>Zin om even alleen te spelen?</h2>

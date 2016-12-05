@@ -39,5 +39,8 @@ Route::group(['middleware' => "web"], function() {
     Route::post('pusher/cardclick', 'PusherController@cardClicked');
     Route::post('pusher/joined', 'PusherController@joinedChannel');
 
+    Route::get('/solo', function () {
+        return view('soloplay.solo');
+    });
 
 });
