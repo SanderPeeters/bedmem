@@ -31,10 +31,15 @@
 
         var pusher = new Pusher(pusher_key, {
             cluster: 'eu',
-            encrypted: true
+            encrypted: true,
+            authEndpoint: '/pusher/auth',
+            auth: {
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                }}
         });
 
-        var channel = pusher.subscribe('test_channel2');
+        var channel = pusher.subscribe('private-test_channel');
         channel.bind('my_event', function(data) {
             alert(data.message);
         });
@@ -46,7 +51,7 @@
         var shuffled_cards_received;
         var level_received;
         var isYourTurn = false;
-        var channelToSend = "test_channel1";
+        var channelToSend = "private-test_channel";
 
         channel.bind('start_game', function(data) {
             shuffled_cards_received = data.shuffled_cards;
@@ -64,7 +69,7 @@
                 });
 
         });
-            channel.bind('card_clicked', function(data) {
+            channel.bind('client-card_clicked', function(data) {
                 if(!isYourTurn) {
                     console.log("#mg__tile_to_click-" + data.card_id);
                     $("#mg__tile_to_click-" + data.card_id).click();
@@ -96,15 +101,16 @@
 
         function cardClicked(card_id) {
                 if(isYourTurn){
-                $.ajax({
-                    method: 'POST',
-                    url: '/pusher/cardclick',
-                    data: {channel: channelToSend, card_id: card_id},
-                    dataType: 'json',
-                    success: function( msg ) {
-                        $("#ajaxResponse").empty().append("<div>"+msg.response+"</div>");
-                    }
-                })
+//                $.ajax({
+//                    method: 'POST',
+//                    url: '/pusher/cardclick',
+//                    data: {channel: channelToSend, card_id: card_id},
+//                    dataType: 'json',
+//                    success: function( msg ) {
+//                        $("#ajaxResponse").empty().append("<div>"+msg.response+"</div>");
+//                    }
+//                })
+                    channel.trigger("client-card_clicked", {'card_id': card_id});
             }}
     </script>
 @endsection

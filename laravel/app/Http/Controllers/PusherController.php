@@ -30,4 +30,18 @@ class PusherController extends Controller
         Pusher::trigger($channel, 'has_joined', ['channel' => $channel]);
         return response()->json(['response' => 'channel '.$channel.' joined!']);
     }
+
+    //Tell the correct channel that the bednetter has joined the channel.
+    function authChannel(Request $request){
+        if (true){
+            $channel = $request->input('channel_name');
+            $socketId = $request->input('socket_id');
+//        Pusher::socket_auth($channel, $socketId);
+            $response = Pusher::socket_auth($channel, $socketId);
+            return $response;
+        }
+        else{
+            return Response::make('Forbidden',403);
+        }
+    }
 }
