@@ -41,5 +41,8 @@ Route::group(['middleware' => "web"], function() {
     Route::post('pusher/auth', 'PusherController@authChannel');
 
 
+    Route::get('/solo', function () {
+        return view('soloplay.solo');
+    });
 
 });

@@ -5,7 +5,7 @@ body {
     font-family: 'Dosis', sans-serif;
 }
 .wrapper {
-    min-height: 79vh;
+    min-height: 82vh;
 }
 .home {
     min-height: 100vh;
@@ -26,6 +26,11 @@ img#playground {
 }
 .image-on-home {
     width: 100%;
+}
+@media screen and (max-width: 768px) {
+    .vanish {
+        display: none;
+    }
 }
 .explanation {
     margin-bottom: 20px;
@@ -64,6 +69,9 @@ img#playground {
 .navbar-toggle {
     margin-top: 18px;
     margin-bottom: 0px;
+    border: none !important;
+    padding-bottom: 0px;
+    padding-right: 0px;
 }
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
     color: #fff;
@@ -74,6 +82,38 @@ img#playground {
 }
 .navbar-right {
     margin-right: 0px;
+}
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover {
+    background-color: transparent;
+}
+
+.navbar-toggle span.icon-bar {
+    transition: all 0.15s;
+    background-color: rgb(111,185,230) !important;
+}
+
+.navbar-toggle span:nth-child(2) {
+    transform: rotate(45deg);
+    transform-origin: 10% 10%;
+}
+
+.navbar-toggle span:nth-child(3) {
+    opacity: 0;
+}
+
+.navbar-toggle span:nth-child(4) {
+    transform: rotate(-45deg);
+    transform-origin: 10% 90%;
+}
+
+.navbar-toggle.collapsed span:nth-child(2),
+.navbar-toggle.collapsed span:nth-child(4) {
+    transform: rotate(0);
+}
+
+.navbar-toggle.collapsed span:nth-child(3) {
+    opacity: 1;
 }
 .footer {
     /* Set the fixed height of the footer here */
