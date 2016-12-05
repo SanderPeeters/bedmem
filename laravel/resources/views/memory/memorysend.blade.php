@@ -13,7 +13,7 @@
             <div id="ajaxResponse"></div>
             <div id="isYourTurnText"></div>
             <div class="content">
-                <div class="container">
+                <div class="mem-container">
                     <div id="my-memory-game"></div>
                 </div>
             </div>
