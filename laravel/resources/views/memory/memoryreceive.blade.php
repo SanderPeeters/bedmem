@@ -24,7 +24,21 @@
 @section('pageExclusiveJS')
     <script src="js/constants.js"></script>
     <script src="js/texts.js"></script>
-    <script src="js/pusherLogin.js"></script>
+    {{--<script src="js/pusherLogin.js"></script>--}}
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher(pusher_key, {
+            cluster: 'eu',
+            encrypted: true
+        });
+
+        var channel = pusher.subscribe('test_channel2');
+        channel.bind('my_event', function(data) {
+            alert(data.message);
+        });
+    </script>
     <script src="js/classList.js"></script>
     <script src="js/memoryReceiver.js"></script>
 
@@ -32,7 +46,7 @@
         var shuffled_cards_received;
         var level_received;
         var isYourTurn = false;
-        var channelToSend = "test_channel";
+        var channelToSend = "test_channel1";
 
         channel.bind('start_game', function(data) {
             shuffled_cards_received = data.shuffled_cards;
@@ -45,10 +59,10 @@
                     cards : this.all_cards,
                     level: this.level_received,
                     shuffledCards: this.shuffled_cards_received,
-                    onGameStart : function() { return false; },
+                    onGameStart : function() { changePointerEventForTurn(); },
                     onGameEnd : function() { return false; }
                 });
-            changePointerEventForTurn();
+
         });
             channel.bind('card_clicked', function(data) {
                 if(!isYourTurn) {

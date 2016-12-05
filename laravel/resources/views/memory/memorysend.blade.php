@@ -26,11 +26,27 @@
 @section('pageExclusiveJS')
     <script src="js/constants.js"></script>
     <script src="js/texts.js"></script>
+{{--
     <script src="js/pusherLogin.js"></script>
-    <script src="js/classList.js"></script>
-    <script src="js/memorysend.js"></script>
+--}}
     <script>
-        var channelToSend = "test_channel";
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher(pusher_key, {
+            cluster: 'eu',
+            encrypted: true
+        });
+
+        var channel = pusher.subscribe('test_channel1');
+        channel.bind('my_event', function(data) {
+            alert(data.message);
+        });
+    </script>
+    <script src="js/classList.js"></script>
+    <script src="js/memorySend.js"></script>
+    <script>
+        var channelToSend = "test_channel2";
         var isYourTurn = true;
 
         channel.bind('has_joined', function(data) {
@@ -40,10 +56,10 @@
                 var myMem = new Memory({
                     wrapperID : "my-memory-game",
                     cards : this.all_cards,
-                    onGameStart : function() { startGame(level_to_send, cards_to_send) },
+                    onGameStart : function() { startGame(level_to_send, cards_to_send); changePointerEventForTurn(); },
                     onGameEnd : function() { return false; }
                 });
-            changePointerEventForTurn();
+
         });
 
         channel.bind('card_clicked', function(data) {
