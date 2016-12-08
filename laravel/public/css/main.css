@@ -147,3 +147,8 @@ a:visited {
     background-color: #fff;
     border: 1px solid rgb(242, 120, 21);
 }
+
+
+#toCopyBlock{
+    padding-top: 20%;
+}
