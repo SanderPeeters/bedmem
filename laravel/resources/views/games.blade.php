@@ -11,7 +11,7 @@
                     probeer meer paren te vrienden dan je klasgenoot!
                 </p>
 
-                <a href="{{url('/play1')}}">
+                <a href="{{url('/creategame')}}">
                     <button type="button" class="buttonstyle">
                         Start een nieuw spel!
                     </button>
