@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div id="ajaxResponse"></div>
             <div id="isYourTurnText"></div>
-            <div id="wait-message">Even wachten tot het spel gestart is door de andere kant.</div>
+            <div id="wait-message" class="text-center">Even wachten tot het spel gestart is door de andere kant.</div>
             <div class="content">
                 <div class="mem-container">
                     <div id="my-memory-game"></div>
@@ -22,10 +22,11 @@
 @endsection
 
 @section('pageExclusiveJS')
-    <script src="js/constants.js"></script>
-    <script src="js/texts.js"></script>
-    {{--<script src="js/pusherLogin.js"></script>--}}
+    <script src="/js/constants.js"></script>
+    <script src="/js/texts.js"></script>
     <script>
+        var pusherChannel = "private-{{$channel->channelname}}";
+
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
 
@@ -39,21 +40,19 @@
                 }}
         });
 
-        var channel = pusher.subscribe('private-test_channel');
-        channel.bind('my_event', function(data) {
-            alert(data.message);
-        });
+        var channel = pusher.subscribe(pusherChannel);
+
     </script>
-    <script src="js/classList.js"></script>
-    <script src="js/memoryReceiver.js"></script>
+    <script src="/js/classList.js"></script>
+    <script src="/js/memoryReceiver.js"></script>
 
     <script>
         var shuffled_cards_received;
         var level_received;
         var isYourTurn = false;
-        var channelToSend = "private-test_channel";
 
-        channel.bind('start_game', function(data) {
+
+        channel.bind('client-start_game', function(data) {
             shuffled_cards_received = data.shuffled_cards;
             level_received = data.level;
             $("#my-memory-game").empty();
@@ -79,7 +78,7 @@
 
 
     </script>
-    <script src="js/yourTurnLogic.js"></script>
+    <script src="/js/yourTurnLogic.js"></script>
     <script>
         console.log("token= " + $('meta[name="csrf-token"]').attr('content'));
         $.ajaxSetup({
@@ -89,27 +88,23 @@
         });
 
         //send message to tell other side that you logged in
-        $(function() { $.ajax({
-            method: 'POST',
-            url: '/pusher/joined',
-            data: {channel: channelToSend},
-            dataType: 'json',
-            success: function( msg ) {
-                $("#ajaxResponse").empty().append("<div>"+msg.response+"</div>");
-            }
-        }) });
+
+        channel.bind('pusher:subscription_succeeded', function() {
+           /* $.ajax({
+                method: 'POST',
+                url: '/pusher/joined',
+                data: {channel: pusherChannel},
+                dataType: 'json',
+                success: function( msg ) {
+                    $("#ajaxResponse").empty().append("<div>"+msg.response+"</div>");
+                }
+            })*/
+            channel.trigger("client-has_joined", {'channel': pusherChannel});
+            $("#ajaxResponse").empty().append("<div>channel "+pusherChannel+" joined!</div>");
+        });
 
         function cardClicked(card_id) {
                 if(isYourTurn){
-//                $.ajax({
-//                    method: 'POST',
-//                    url: '/pusher/cardclick',
-//                    data: {channel: channelToSend, card_id: card_id},
-//                    dataType: 'json',
-//                    success: function( msg ) {
-//                        $("#ajaxResponse").empty().append("<div>"+msg.response+"</div>");
-//                    }
-//                })
                     channel.trigger("client-card_clicked", {'card_id': card_id});
             }}
     </script>

@@ -244,8 +244,8 @@
     this.tilesHTML = '';
     for ( var i = 0; i < this.numTiles; i++  ) {
       var n = i + 1;
-      this.tilesHTML += '<div class="mg__tile mg__tile-' + n + '" onclick="cardClicked(' + n + ')">\
-        <div class="mg__tile--inner" id="mg__tile_to_click-' + n + '" data-id="' + this.newCards[i]["id"] + '">\
+      this.tilesHTML += '<div class="mg__tile mg__tile-' + n + '">\
+        <div class="mg__tile--inner" id="mg__tile_to_click-' + n + '" data-id="' + this.newCards[i]["id"] + '" onclick="cardClicked(' + n + ')" >\
         <span class="mg__tile--outside"></span>\
         <span class="mg__tile--inside"><img src="' + this.newCards[i]["img"] + '"></span>\
         </div>\
