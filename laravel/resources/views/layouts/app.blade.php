@@ -52,7 +52,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{url('/')}}">Home</a></li>
                     <li class="{{ Request::is('games','play1/*', 'play2/*', 'solo') ? 'active' : '' }}"><a href="{{url('/games')}}">Speel</a></li>
-                    <li class="{{ Request::is('') ? 'active' : '' }}"><a href="{{url('/')}}">Over</a></li>
+                    <li class="{{ Request::is('spelregels') ? 'active' : '' }}"><a href="{{url('/spelregels')}}">Spelregels</a></li>
                     <li><a href="http://www.bednet.be/">Bednet</a></li>
                     <!-- Authentication Links -->
                     {{--@if (Auth::guest())

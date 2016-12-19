@@ -54,4 +54,8 @@ Route::group(['middleware' => "web"], function() {
         return view('soloplay.solo');
     });
 
+    Route::get('/spelregels', function () {
+        return view('rules');
+    });
+
 });
