@@ -13,6 +13,9 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="{{ url('/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url('/favicon.ico') }}" type="image/x-icon">
 @yield('pageExclusiveCSS')
 
 <!-- Scripts -->
