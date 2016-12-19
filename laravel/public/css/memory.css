@@ -73,7 +73,7 @@ img {
 .mg__start-screen--sub-heading {
   font-size: 24px;
   margin-bottom: 10px;
-  color: #28aadc;
+  color: rgb(111,185,230);
 }
 .mg__start-screen--sub-heading::before, .mg__start-screen--sub-heading::after {
   margin: 0 5px;
@@ -90,12 +90,12 @@ img {
   padding: 0;
 }
 .mg__start-screen--level-select span {
-  color: #ff3c50;
+  color: rgb(242, 120, 21);
   font-size: 18px;
   cursor: pointer;
 }
 .mg__start-screen--level-select span:hover {
-  color: #d50016;
+  color: rgb(197, 100, 20);
 }
 
 /**
@@ -470,26 +470,6 @@ img {
 
 .mg__onend--message {
   margin-bottom: 10px;
-}
-
-/**
- * Game buttons
- *
- * A simple helper class for game buttons. Edit at your will.
- */
-.mg__button {
-  margin: 0;
-  display: inline-block;
-  padding: 5px;
-  color: #fff;
-  /*font-family: "Roboto Slab", serif;*/
-  font-size: 14px;
-  appearance: none;
-  background: #ff3c50;
-  border: none;
-  border-radius: 3px;
-  box-shadow: none;
-  cursor: pointer;
 }
 
 
