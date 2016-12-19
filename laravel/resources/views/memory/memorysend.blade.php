@@ -19,7 +19,7 @@
                         Kopieer
                     </button>
                 </div>
-                <div id="wait-message" class="text-center"><h4>Even wachten de andere kant is ingelogd.</h4></div>
+                <div id="wait-message" class="text-center"><h4>Even wachten tot de andere speler zich heeft aangemeld.</h4></div>
 
                 <div class="content">
                     <div class="mem-container">

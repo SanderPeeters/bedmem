@@ -25,7 +25,6 @@ img#playground {
     width: 100%;
 }
 .image-on-home {
-    margin-top: 22px;
     width: 100%;
 }
 @media screen and (max-width: 768px) {
@@ -153,7 +152,10 @@ a:visited {
     background-color: #fff;
     border: 1px solid rgb(242, 120, 21);
 }
-
+#mg__button--restart {
+    width: 100%;
+    height: 40px;
+}
 #toCopyBlock{
     padding-top: 20%;
 }

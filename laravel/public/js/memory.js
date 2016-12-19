@@ -492,7 +492,7 @@
             this._clearGame();
             this.gameMessages.innerHTML = '<h2 class="mg__onend--heading">'+mem_end_title+'</h2>\
         <p class="mg__onend--message">' + mem_end_text_1 + this.numMoves + mem_end_text_2+'</p>\
-        <button id="mg__onend--restart" class="mg__button">'+mem_end_again+'</button>';
+        <button id="mg__onend--restart" class="buttonstyle">'+mem_end_again+'</button>';
             this.game.appendChild(this.gameMessages);
             document.getElementById("mg__onend--restart").addEventListener( "click", function(e) {
                 self.resetGame();

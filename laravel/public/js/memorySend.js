@@ -153,7 +153,7 @@ var level_to_send;
       </span>\
       </div>\
       <div class="mg__meta--right">\
-      <button id="mg__button--restart" class="mg__button">Begin opnieuw</button>\
+      <button id="mg__button--restart" class="buttonstyle">Begin opnieuw</button>\
       </div>';
         this.gameMeta.innerHTML = this.gameMetaHTML;
         this.game.appendChild(this.gameMeta);
