@@ -12,7 +12,7 @@
                 </p>
 
                 <a href="{{url('/creategame')}}">
-                    <button type="button" class="buttonstyle">
+                    <button type="button" class="buttonstyle page__btn">
                         Start een nieuw spel!
                     </button>
                 </a>
@@ -31,7 +31,7 @@
                     Wil jij de beste worden in het memory spel? Oefen je skills achter de rug van je vrienden dankzij de single player?
                 </p>
                 <a href="{{url('/solo')}}">
-                    <button type="button" class="buttonstyle">
+                    <button type="button" class="buttonstyle page__btn">
                         Oefen jouw memory skills!
                     </button>
                 </a>

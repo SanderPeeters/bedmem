@@ -475,5 +475,14 @@ img {
 .mg__onend--message {
   margin-bottom: 10px;
 }
-
+.mg__button {
+  border: 1px solid rgb(242, 120, 21);
+  font-family: 'Dosis', sans-serif;
+  padding: 5px 35px;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: rgb(242, 120, 21);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
 
