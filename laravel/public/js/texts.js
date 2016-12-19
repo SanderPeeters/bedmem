@@ -12,4 +12,8 @@ const mem_explanation_text = "Draai de kaarten om en probeer paren te vinden. Vi
 const mem_end_title = "Super!";
 const mem_end_text_1 = "Jullie hebben de ronde gewonnen in ";
 const mem_end_text_2 = " stappen. Goed gedaan!";
+
+const mem_end_text_3 = "Jij hebt ";
+const mem_end_text_4 = " paren gevonden.";
+
 const mem_end_again = "Nog eens spelen?";

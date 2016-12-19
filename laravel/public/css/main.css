@@ -4,6 +4,9 @@ body {
     background-color: #fff;
     font-family: 'Dosis', sans-serif;
 }
+.wrapper {
+    min-height: 85vh;
+}
 .home {
     min-height: 100vh;
 }
@@ -18,21 +21,25 @@ img#playground {
 }
 #playground {
     object-fit: cover;
+    object-position: 10% 0;
     width: 100%;
 }
 .image-on-home {
     width: 100%;
 }
-@media screen and (min-width: 992px) {
-    .explanation:first-child {
-        padding-left: 0px;
-    }
-    .explanation:last-child {
-        padding-right: 0px;
+@media screen and (max-width: 768px) {
+    .vanish {
+        display: none;
     }
 }
-
+.explanation {
+    margin-bottom: 20px;
+}
+.explanation p {
+    margin-bottom: 30px;
+}
 #bednetlogo {
+    margin-left: 15px;
     padding-top: 10px;
     height: 100%;
 }
@@ -55,17 +62,62 @@ img#playground {
     font-size: 1.2em;
     font-weight: bold;
 }
-
+.navbar-nav {
+    margin: 0px;
+}
 .navbar-default .navbar-nav>li>a:hover {
     color: #fff;
     background-color: rgb(182,220, 242);
 }
-
+.navbar-toggle {
+    margin-top: 18px;
+    margin-bottom: 0px;
+    border: none !important;
+    padding-bottom: 0px;
+    padding-right: 0px;
+}
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
     color: #fff;
     background-color: rgb(242, 120, 21);
 }
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border: none;
+}
+.navbar-right {
+    margin-right: 0px;
+}
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover {
+    background-color: transparent;
+}
 
+.navbar-toggle span.icon-bar {
+    transition: all 0.15s;
+    background-color: rgb(111,185,230) !important;
+}
+
+.navbar-toggle span:nth-child(2) {
+    transform: rotate(45deg);
+    transform-origin: 10% 10%;
+}
+
+.navbar-toggle span:nth-child(3) {
+    opacity: 0;
+}
+
+.navbar-toggle span:nth-child(4) {
+    transform: rotate(-45deg);
+    transform-origin: 10% 90%;
+}
+
+.navbar-toggle.collapsed span:nth-child(2),
+.navbar-toggle.collapsed span:nth-child(4) {
+    transform: rotate(0);
+}
+
+.navbar-toggle.collapsed span:nth-child(3) {
+    opacity: 1;
+}
 .footer {
     /* Set the fixed height of the footer here */
     min-height: 60px;
@@ -84,7 +136,7 @@ a:visited {
     text-decoration: none;
 }
 .buttonstyle {
-    border: none;
+    border: 1px solid rgb(242, 120, 21);
     font-family: 'Dosis', sans-serif;
     padding: 5px 35px;
     text-transform: uppercase;
@@ -92,9 +144,22 @@ a:visited {
     background-color: rgb(242, 120, 21);
     font-weight: bold;
     letter-spacing: 1px;
+    width: 100%;
+    height: 70px;
 }
 .buttonstyle:hover {
     color: rgb(242, 120, 21);
     background-color: #fff;
     border: 1px solid rgb(242, 120, 21);
+}
+#mg__button--restart {
+    width: 100%;
+    height: 40px;
+}
+#toCopyBlock{
+    padding-top: 20%;
+}
+#copyButton {
+    width: 20%;
+    height: 40px;
 }
