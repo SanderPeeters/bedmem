@@ -9,9 +9,9 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div id="ajaxResponse"></div>
-                <div id="playerInfo">Er zijn <span id="playerCount">1</span> spelers.</div>
-                <div id="isYourTurnText"></div>
+                {{--<div id="ajaxResponse"></div>--}}
+                {{--<div id="playerInfo">Er zijn <span id="playerCount">1</span> spelers.</div>--}}
+                {{--<div id="isYourTurnText"></div>--}}
                 <div class="text-center animated" id="isYourTurnAlert"></div>
                 <div id="toCopyBlock" class="text-center">
                     <p>Kopieer deze link en stuur hem naar de persoon met wie je wil spelen.</p>
