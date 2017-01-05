@@ -5,7 +5,7 @@ function changePointerEventForTurn() {
     if(!isYourTurn){
         $('#mg__wrapper').css({"pointer-events":"none"});
         // $('#isYourTurnText').empty().append("Het is niet jouw beurt");
-        $('#isYourTurnAlert').removeClass("pulse").empty().append("<h2>De andere speler is aan zet.</h2>");
+        $('#isYourTurnAlert').removeClass("swing").empty().append("<h2>De andere speler is aan zet.</h2>");
         /*setTimeout(function(){
             $('#isYourTurnAlert').addClass("tada");
         }, 500);*/
@@ -13,9 +13,9 @@ function changePointerEventForTurn() {
     if(isYourTurn){
         $('#mg__wrapper').css({"pointer-events":"auto"});
         // $('#isYourTurnText').empty().append("Het is jouw beurt");
-        $('#isYourTurnAlert').removeClass("pulse").empty().append("<h2>Het is jouw beurt.</h2>");
+        $('#isYourTurnAlert').removeClass("swing").empty().append("<h2>Het is jouw beurt.</h2>");
         setTimeout(function(){
-            $('#isYourTurnAlert').addClass("pulse");
+            $('#isYourTurnAlert').addClass("swing");
         }, 500);
 
 
