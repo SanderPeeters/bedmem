@@ -14,7 +14,7 @@ var pusher = new Pusher(pusher_key, {
     encrypted: true
 });
 
-var channel = pusher.subscribe('test_channel');
+// var channel = pusher.subscribe('test_channel');
 // channel.bind('my_event', function(data) {
 //     alert(data.message);
 // });
