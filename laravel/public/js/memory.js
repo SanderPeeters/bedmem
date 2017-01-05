@@ -188,7 +188,7 @@
         var self = this;
         this.gameState = 1;
         this.cards = shuffle(this.options.cards);
-        console.log(this.cards);
+        // console.log(this.cards);
         this.card1 = "";
         this.card2 = "";
         this.card1id = "";
@@ -305,7 +305,7 @@
             this.newCards.push(this.cards[i], this.cards[i]);
         }
         this.newCards = shuffle(this.newCards);
-        console.log(this.newCards);
+        // console.log(this.newCards);
         this.tilesHTML = '';
         for ( var i = 0; i < this.numTiles; i++  ) {
             var n = i + 1;
