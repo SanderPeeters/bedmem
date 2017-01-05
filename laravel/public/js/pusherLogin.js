@@ -4,7 +4,7 @@
 
 
 // Enable pusher logging - don't include this in production
-Pusher.logToConsole = false;
+// Pusher.logToConsole = false;
 
 var pusher = new Pusher(pusher_key, {
     cluster: 'eu',
