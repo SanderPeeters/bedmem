@@ -96,7 +96,6 @@
                 });
             pollingisActive = true;
             pollServer();
-
         });
             channel.bind('client-card_clicked', function(data) {
                 if(!isYourTurn) {
