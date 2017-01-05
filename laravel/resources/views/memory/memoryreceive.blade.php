@@ -8,8 +8,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div id="ajaxResponse"></div>
-            <div id="isYourTurnText"></div>
+            {{--<div id="ajaxResponse"></div>--}}
+            {{--<div id="isYourTurnText"></div>--}}
+            <div class="text-center animated" id="isYourTurnAlert"></div>
             <div id="wait-message" class="text-center">Even wachten tot het spel gestart is door de andere kant.</div>
             <div class="content">
                 <div class="mem-container">
@@ -19,16 +20,43 @@
         </div>
     </div>
 </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center">Oei je tegenstander heeft het spel verlaten</h4>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <p>Speel solo verder <a href="/solo">Klik hier</a></p>
+                    <p>Of start een nieuw spel</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Sluit</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 @endsection
 
 @section('pageExclusiveJS')
     <script src="/js/constants.js"></script>
     <script src="/js/texts.js"></script>
     <script>
+        var pollingisActive = true;
         var pusherChannel = "private-{{$channel->channelname}}";
 
         // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
+//        Pusher.logToConsole = true;
 
         var pusher = new Pusher(pusher_key, {
             cluster: 'eu',
@@ -66,11 +94,12 @@
                     onGameStart : function() { changePointerEventForTurn(); },
                     onGameEnd : function() { return false; }
                 });
-
+            pollingisActive = true;
+            pollServer();
         });
             channel.bind('client-card_clicked', function(data) {
                 if(!isYourTurn) {
-                    console.log("#mg__tile_to_click-" + data.card_id);
+//                    console.log("#mg__tile_to_click-" + data.card_id);
                     $("#mg__tile_to_click-" + data.card_id).click();
                     $("#ajaxResponse").empty().append("<div>card " + data.card_id + " clicked!</div>");
                 }
@@ -80,7 +109,7 @@
     </script>
     <script src="/js/yourTurnLogic.js"></script>
     <script>
-        console.log("token= " + $('meta[name="csrf-token"]').attr('content'));
+//        console.log("token= " + $('meta[name="csrf-token"]').attr('content'));
         $.ajaxSetup({
             headers: {
                 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
@@ -107,6 +136,35 @@
                 if(isYourTurn){
                     channel.trigger("client-card_clicked", {'card_id': card_id});
             }}
+    </script>
+
+    <script>
+
+
+        function pollServer()
+        {
+            if (pollingisActive)
+            {
+                window.setTimeout(function () {
+                    $.ajax({
+                        url: "/pusher/channelinfo/"+pusherChannel,
+                        type: "GET",
+                        success: function (data) {
+//                            console.log(data.result.subscription_count);
+                            $('#playerCount').empty().append(data.result.subscription_count);
+                            if(data.result.subscription_count < 2){
+                                pollingisActive = false;
+                                $("#myModal").modal();
+                            }
+                            pollServer();
+                        },
+                        error: function () {
+                            //ERROR HANDLING
+                            pollServer();
+                        }});
+                }, 20000);
+            }
+        }
     </script>
 @endsection
 

@@ -9,9 +9,10 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div id="ajaxResponse"></div>
-                <div id="playerInfo">Er zijn <span id="playerCount">1</span> spelers.</div>
-                <div id="isYourTurnText"></div>
+                {{--<div id="ajaxResponse"></div>--}}
+                {{--<div id="playerInfo">Er zijn <span id="playerCount">1</span> spelers.</div>--}}
+                {{--<div id="isYourTurnText"></div>--}}
+                <div class="text-center animated" id="isYourTurnAlert"></div>
                 <div id="toCopyBlock" class="text-center">
                     <p>Kopieer deze link en stuur hem naar de persoon met wie je wil spelen.</p>
                     <input id="toCopy" value="{{url('play2/'.$channel->channelname)}}" readonly style="width:40%">
@@ -70,7 +71,7 @@
         var isYourTurn = true;
 
         // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
+//        Pusher.logToConsole = true;
 
         var pusher = new Pusher(pusher_key, {
             cluster: 'eu',
@@ -146,7 +147,7 @@
 
         channel.bind('client-card_clicked', function(data) {
             if(!isYourTurn) {
-                console.log("#mg__tile_to_click-" + data.card_id);
+//                console.log("#mg__tile_to_click-" + data.card_id);
                 $("#mg__tile_to_click-" + data.card_id).click();
                 $("#ajaxResponse").empty().append("<div>card " + data.card_id + " clicked!</div>");
             }
@@ -154,7 +155,7 @@
     </script>
     <script src="/js/yourTurnLogic.js"></script>
     <script>
-        console.log("token= " + $('meta[name="csrf-token"]').attr('content'));
+//        console.log("token= " + $('meta[name="csrf-token"]').attr('content'));
         $.ajaxSetup({
             headers: {
                 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
@@ -200,7 +201,7 @@
                         url: "/pusher/channelinfo/"+pusherChannel,
                         type: "GET",
                         success: function (data) {
-                            console.log(data.result.subscription_count);
+//                            console.log(data.result.subscription_count);
                             $('#playerCount').empty().append(data.result.subscription_count);
                             if(data.result.subscription_count < 2){
                                 pollingisActive = false;

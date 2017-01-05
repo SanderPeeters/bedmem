@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,6 +13,11 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="{{ url('/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url('/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
 @yield('pageExclusiveCSS')
 
 <!-- Scripts -->
@@ -52,7 +57,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{url('/')}}">Home</a></li>
                     <li class="{{ Request::is('games','play1/*', 'play2/*', 'solo') ? 'active' : '' }}"><a href="{{url('/games')}}">Speel</a></li>
-                    <li class="{{ Request::is('') ? 'active' : '' }}"><a href="{{url('/')}}">Over</a></li>
+                    <li class="{{ Request::is('spelregels') ? 'active' : '' }}"><a href="{{url('/spelregels')}}">Spelregels</a></li>
                     <li><a href="http://www.bednet.be/">Bednet</a></li>
                     <!-- Authentication Links -->
                     {{--@if (Auth::guest())
