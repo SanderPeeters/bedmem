@@ -16,7 +16,7 @@
         <div class="row last">
             <div class="col-md-6 explanation">
                 <p>Welkom op het memory platform voor Bednet gebruikers! Hier kan je je amuseren met het alom bekende memoryspel
-                    waarbij je kaartjes moet omdraaien en gelijke paren moet proberen te vinden in zo weinig mogelijk zetten.
+                    waarbij je kaartjes moet omdraaien en gelijke paren proberen te vinden in zo weinig mogelijk zetten.
                     De keuze is aan jou, speel alleen om jouw memory-skills te verbeteren of daag een vriendje of vriendinnetje uit
                     en geniet samen van dit interactieve spel.</p>
                 <p>Heb je graag nog wat meer uitleg bij het spel? Kijk dan zeker eens naar de <a href="{{ url('/spelregels') }}">spelregels</a>.</p>
