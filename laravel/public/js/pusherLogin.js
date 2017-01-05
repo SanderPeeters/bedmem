@@ -4,8 +4,11 @@
 
 
 // Enable pusher logging - don't include this in production
-// Pusher.logToConsole = false;
-
+/*Pusher.logToConsole(false);
+Pusher.log = function(msg) {
+   return null;
+};*/
+// Pusher.enableLogging(false);
 var pusher = new Pusher(pusher_key, {
     cluster: 'eu',
     encrypted: true
